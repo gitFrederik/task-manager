@@ -1,6 +1,7 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 export type Priority = "low" | "medium" | "high";
+export type Status = "todo" | "in_progress" | "completed";
 
 export interface Task {
   id: string;
@@ -8,6 +9,7 @@ export interface Task {
   description: string | null;
   completed: boolean;
   priority: Priority;
+  status: Status;
   due_date: string | null;
   created_at: string;
 }
@@ -17,6 +19,7 @@ export interface CreateTaskPayload {
   description?: string;
   priority?: Priority;
   due_date?: string;
+  status?: Status;
 }
 
 export interface UpdateTaskPayload {
@@ -25,6 +28,7 @@ export interface UpdateTaskPayload {
   completed?: boolean;
   priority?: Priority;
   due_date?: string;
+  status?: Status;
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
